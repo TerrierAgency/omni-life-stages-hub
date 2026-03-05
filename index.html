@@ -126,20 +126,23 @@
       background: var(--cream);
     }
     .hero .container {
-      max-width: 800px;
-      text-align: center;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
     }
-    .hero-badge {
-      display: inline-block;
-      background: var(--forest);
-      color: var(--cream);
-      font-size: 12px;
-      font-weight: 600;
-      padding: 6px 14px;
-      border-radius: 20px;
-      margin-bottom: 16px;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
+    .hero-image {
+      background: linear-gradient(135deg, var(--mint), var(--teal));
+      border-radius: 12px;
+      aspect-ratio: 4/3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      font-size: 14px;
+      font-weight: 500;
+      text-align: center;
+      padding: 24px;
     }
     .hero h1 {
       font-size: 48px;
@@ -152,8 +155,18 @@
       font-size: 18px;
       line-height: 1.7;
       color: var(--charcoal);
-      max-width: 680px;
-      margin: 0 auto;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: var(--forest);
+      color: var(--cream);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 20px;
+      margin-bottom: 16px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
     }
 
     /* -- SECTION DEFAULTS -- */
@@ -200,7 +213,7 @@
 
     /* -- STAGE SELECTOR -- */
     .stage-selector {
-      padding: var(--block-space) 0 calc(var(--block-space) / 2);
+      padding: 64px 0;
     }
     .stage-cards {
       display: grid;
@@ -210,165 +223,203 @@
     .stage-card {
       background: var(--white);
       border-radius: 12px;
-      padding: 40px 28px;
-      text-align: center;
+      overflow: hidden;
       box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-      transition: transform 0.2s, box-shadow 0.2s;
-      cursor: pointer;
       text-decoration: none;
-      color: inherit;
+      color: var(--charcoal);
+      transition: transform 0.2s, box-shadow 0.2s;
       display: block;
-      border: 2px solid transparent;
     }
     .stage-card:hover {
       transform: translateY(-4px);
       box-shadow: 0 8px 24px rgba(0,0,0,0.1);
       text-decoration: none;
-      border-color: var(--teal);
     }
-    .stage-card-icon {
-      font-size: 56px;
-      margin-bottom: 16px;
-      line-height: 1;
+    .stage-card-img {
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      font-size: 14px;
+      font-weight: 500;
+      text-align: center;
+      padding: 24px;
     }
-    .stage-card h3 {
-      font-size: 24px;
+    .stage-card-img--puppy { background: linear-gradient(135deg, var(--mint), var(--teal)); }
+    .stage-card-img--adult { background: linear-gradient(135deg, var(--cream), var(--forest)); }
+    .stage-card-img--senior { background: linear-gradient(135deg, var(--teal), var(--forest)); }
+    .stage-card-body {
+      padding: 24px;
+      text-align: center;
+    }
+    .stage-card-body h3 {
+      font-size: 22px;
       font-weight: 700;
       color: var(--forest);
       margin-bottom: 4px;
     }
-    .stage-card .stage-age {
+    .stage-age {
       font-size: 14px;
       font-weight: 600;
       color: var(--teal);
-      margin-bottom: 12px;
       text-transform: uppercase;
       letter-spacing: 0.5px;
+      margin-bottom: 8px;
     }
-    .stage-card p {
+    .stage-card-body p {
       font-size: 15px;
       color: #555;
       line-height: 1.5;
     }
 
-    /* -- LIFE STAGE SECTIONS -- */
-    .stage-section h3 {
-      font-size: 22px;
-      font-weight: 700;
-      color: var(--forest);
-      margin: 32px 0 12px;
-    }
-    .stage-section h3:first-of-type {
-      margin-top: 0;
-    }
-    .stage-section p {
-      font-size: 16px;
-      color: #444;
-      line-height: 1.7;
-      margin-bottom: 16px;
-    }
-    .stage-section ul {
-      list-style: none;
-      margin: 0 0 24px;
-    }
-    .stage-section li {
-      padding: 6px 0 6px 24px;
-      position: relative;
-      font-size: 15px;
-      color: #444;
-    }
-    .stage-section li::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 14px;
-      width: 8px;
-      height: 8px;
-      background: var(--teal);
-      border-radius: 50%;
-    }
-    .stage-content {
-      display: grid;
-      grid-template-columns: 1.4fr 0.6fr;
-      gap: 48px;
-      align-items: start;
-    }
+    /* -- STAGE SECTIONS -- */
+    .stage-section { padding: var(--block-space) 0; }
+    .stage-section .section-subtitle { margin-bottom: 48px; }
 
-    /* -- NUMBERED LIST -- */
-    .numbered-list {
-      list-style: none;
-      counter-reset: item;
-      margin: 0 0 24px;
+    /* -- TWO COL LAYOUT -- */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+      margin-bottom: 48px;
     }
-    .numbered-list li {
-      padding: 8px 0 8px 36px;
-      position: relative;
-      font-size: 15px;
-      color: #444;
-      counter-increment: item;
-    }
-    .numbered-list li::before {
-      content: counter(item);
-      position: absolute;
-      left: 0;
-      top: 8px;
-      width: 24px;
-      height: 24px;
-      background: var(--teal);
-      border-radius: 50%;
-      color: var(--white);
-      font-size: 13px;
-      font-weight: 700;
+    .two-col--reverse { direction: rtl; }
+    .two-col--reverse > * { direction: ltr; }
+    .two-col:last-child { margin-bottom: 0; }
+
+    /* -- IMAGE PLACEHOLDERS -- */
+    .img-placeholder {
+      border-radius: 12px;
+      aspect-ratio: 4/3;
       display: flex;
       align-items: center;
       justify-content: center;
+      color: var(--white);
+      font-size: 14px;
+      font-weight: 500;
+      text-align: center;
+      padding: 24px;
+    }
+    .img-placeholder--mint { background: linear-gradient(135deg, var(--mint), var(--teal)); }
+    .img-placeholder--cream { background: linear-gradient(135deg, var(--cream), var(--forest)); }
+    .img-placeholder--teal { background: linear-gradient(135deg, var(--teal), var(--forest)); }
+    .img-placeholder--gold { background: linear-gradient(135deg, #FFD700, #8B6914); }
+
+    .img-placeholder--wide {
+      aspect-ratio: 16/9;
+    }
+    .img-placeholder--video {
+      position: relative;
+      aspect-ratio: 16/9;
+      cursor: pointer;
+    }
+    .img-placeholder--video::after {
+      content: '';
+      width: 64px;
+      height: 64px;
+      background: rgba(255,255,255,0.9);
+      border-radius: 50%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .img-placeholder--video::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-40%, -50%);
+      z-index: 1;
+      width: 0;
+      height: 0;
+      border-top: 14px solid transparent;
+      border-bottom: 14px solid transparent;
+      border-left: 22px solid var(--forest);
     }
 
-    /* -- WARNING LIST -- */
-    .warning-list {
-      list-style: none;
-      margin: 0 0 24px;
+    /* -- IMAGE GRID -- */
+    .img-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
     }
-    .warning-list li {
-      padding: 8px 0 8px 28px;
+    .img-grid .img-placeholder {
+      aspect-ratio: 1;
+    }
+
+    /* -- HIGHLIGHT LIST -- */
+    .highlight-list {
+      list-style: none;
+      margin: 16px 0 0;
+    }
+    .highlight-list li {
+      padding: 10px 0 10px 28px;
       position: relative;
       font-size: 15px;
       color: #444;
     }
-    .warning-list li::before {
-      content: '\26A0';
+    .highlight-list li::before {
+      content: '\2713';
       position: absolute;
       left: 0;
-      top: 8px;
-      font-size: 14px;
+      color: var(--teal);
+      font-weight: 700;
     }
 
     /* -- PRODUCT CARDS -- */
-    .product-card {
-      background: var(--mint);
-      border-radius: 12px;
-      padding: 28px;
-      margin-bottom: 16px;
+    .products-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 48px;
     }
-    .product-card h4 {
-      font-size: 18px;
+    .product-card {
+      background: var(--white);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .product-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    }
+    .product-card-img {
+      height: 160px;
+      background: linear-gradient(180deg, var(--mint) 0%, var(--cream) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      color: var(--forest);
+      text-align: center;
+      padding: 16px;
+    }
+    .product-card-body {
+      padding: 24px;
+    }
+    .product-card-body h4 {
+      font-size: 17px;
       font-weight: 700;
       color: var(--forest);
       margin-bottom: 4px;
     }
-    .product-card .product-price {
+    .product-price {
       font-size: 14px;
       font-weight: 600;
       color: var(--teal);
       margin-bottom: 8px;
     }
-    .product-card p {
+    .product-card-body p {
       font-size: 14px;
-      color: #444;
+      color: #555;
       line-height: 1.5;
       margin-bottom: 12px;
     }
-    .product-card a {
+    .product-card-body a {
       font-size: 14px;
       font-weight: 600;
       color: var(--teal);
@@ -382,19 +433,14 @@
       margin: 24px 0;
       border-left: 4px solid var(--teal);
     }
-    .section--mint .milestone-box {
-      background: var(--white);
-    }
+    .section--mint .milestone-box { background: var(--white); }
     .milestone-box h4 {
       font-size: 16px;
       font-weight: 700;
       color: var(--forest);
       margin-bottom: 12px;
     }
-    .milestone-box ul {
-      list-style: none;
-      margin: 0;
-    }
+    .milestone-box ul { list-style: none; margin: 0; }
     .milestone-box li {
       padding: 6px 0 6px 20px;
       position: relative;
@@ -417,19 +463,13 @@
       padding: 28px;
       margin: 24px 0;
     }
-    .section--cream .vet-box {
-      background: var(--white);
-    }
     .vet-box h4 {
       font-size: 16px;
       font-weight: 700;
       color: var(--red);
       margin-bottom: 12px;
     }
-    .vet-box ul {
-      list-style: none;
-      margin: 0;
-    }
+    .vet-box ul { list-style: none; margin: 0; }
     .vet-box li {
       padding: 6px 0 6px 20px;
       position: relative;
@@ -447,9 +487,7 @@
     }
 
     /* -- COMPARISON TABLE -- */
-    .comparison-section {
-      padding: var(--block-space) 0;
-    }
+    .comparison-section { padding: var(--block-space) 0; }
     .comparison-section .section-title {
       text-align: center;
       margin-bottom: 8px;
@@ -478,12 +516,8 @@
       padding: 16px 20px;
       text-align: left;
     }
-    .comparison-table thead th:first-child {
-      border-radius: 12px 0 0 0;
-    }
-    .comparison-table thead th:last-child {
-      border-radius: 0 12px 0 0;
-    }
+    .comparison-table thead th:first-child { border-radius: 12px 0 0 0; }
+    .comparison-table thead th:last-child { border-radius: 0 12px 0 0; }
     .comparison-table tbody td {
       padding: 14px 20px;
       font-size: 15px;
@@ -494,32 +528,15 @@
       font-weight: 600;
       color: var(--charcoal);
     }
-    .comparison-table tbody tr:last-child td {
-      border-bottom: none;
-    }
-    .comparison-table tbody tr:nth-child(even) {
-      background: var(--grey-bg);
-    }
+    .comparison-table tbody tr:last-child td { border-bottom: none; }
+    .comparison-table tbody tr:nth-child(even) { background: var(--grey-bg); }
 
     /* -- FAQ -- */
-    .faq {
-      padding: var(--block-space) 0;
-      background: var(--mint);
-    }
-    .faq .container {
-      max-width: 800px;
-    }
-    .faq .section-title {
-      text-align: center;
-      margin-bottom: 8px;
-    }
-    .faq .section-subtitle {
-      text-align: center;
-      margin: 0 auto 40px;
-    }
-    .accordion-item {
-      border-bottom: 1px solid rgba(0,0,0,0.1);
-    }
+    .faq { padding: var(--block-space) 0; background: var(--mint); }
+    .faq .container { max-width: 800px; }
+    .faq .section-title { text-align: center; margin-bottom: 8px; }
+    .faq .section-subtitle { text-align: center; margin: 0 auto 40px; }
+    .accordion-item { border-bottom: 1px solid rgba(0,0,0,0.1); }
     .accordion-btn {
       width: 100%;
       background: none;
@@ -545,9 +562,7 @@
       color: var(--teal);
       transition: transform 0.2s;
     }
-    .accordion-item.active .accordion-btn::after {
-      content: '\2212';
-    }
+    .accordion-item.active .accordion-btn::after { content: '\2212'; }
     .accordion-content {
       max-height: 0;
       overflow: hidden;
@@ -564,7 +579,24 @@
     .final-cta {
       padding: var(--block-space) 0;
       background: var(--forest);
+    }
+    .final-cta .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    .final-cta-image {
+      background: linear-gradient(135deg, var(--teal), var(--forest));
+      border-radius: 12px;
+      aspect-ratio: 4/3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      font-size: 14px;
       text-align: center;
+      padding: 24px;
     }
     .final-cta h2 {
       font-size: 40px;
@@ -577,9 +609,6 @@
       font-size: 18px;
       color: var(--cream);
       margin-bottom: 32px;
-      max-width: 560px;
-      margin-left: auto;
-      margin-right: auto;
     }
 
     /* -- FOOTER -- */
@@ -632,10 +661,7 @@
       font-size: 13px;
       opacity: 0.6;
     }
-    .footer-socials {
-      display: flex;
-      gap: 16px;
-    }
+    .footer-socials { display: flex; gap: 16px; }
     .footer-socials a {
       width: 32px;
       height: 32px;
@@ -652,35 +678,25 @@
     /* -- RESPONSIVE -- */
     @media (max-width: 1024px) {
       .footer-top { grid-template-columns: 1fr 1fr; }
-      .stage-content { grid-template-columns: 1fr; gap: 32px; }
+      .two-col { grid-template-columns: 1fr; gap: 32px; }
+      .two-col--reverse { direction: ltr; }
+      .products-row { grid-template-columns: 1fr 1fr; }
     }
 
     @media (max-width: 768px) {
-      :root {
-        --block-space: var(--block-space-mobile);
-      }
-
+      :root { --block-space: var(--block-space-mobile); }
       .hero h1 { font-size: 32px; }
+      .hero .container { grid-template-columns: 1fr; gap: 32px; }
       .section-title { font-size: 28px; }
       .final-cta h2 { font-size: 28px; }
-
-      .stage-cards {
-        grid-template-columns: 1fr;
-      }
-      .stage-content {
-        grid-template-columns: 1fr;
-        gap: 24px;
-      }
-
+      .final-cta .container { grid-template-columns: 1fr; gap: 32px; }
+      .stage-cards { grid-template-columns: 1fr; }
+      .products-row { grid-template-columns: 1fr; }
+      .img-grid { grid-template-columns: 1fr; }
       .nav-links { display: none; }
-
       .footer-top { grid-template-columns: 1fr; gap: 24px; }
       .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
-
       .trust-items { gap: 24px; }
-
-      .stage-card { padding: 28px 20px; }
-      .stage-card-icon { font-size: 44px; }
     }
   </style>
 
@@ -690,7 +706,7 @@
     "@context": "https://schema.org",
     "@type": "Article",
     "headline": "Nutrition for Every Stage of Life: Puppy, Adult & Senior Dog Guide",
-    "description": "A comprehensive guide to dog nutrition at every life stage. Learn what puppies, adult dogs, and senior dogs need nutritionally, with vet-formulated supplement recommendations.",
+    "description": "A comprehensive guide to dog nutrition at every life stage with vet-formulated supplement recommendations.",
     "author": {
       "@type": "Organization",
       "name": "Omni Pet Limited",
@@ -701,9 +717,7 @@
       "name": "Omni Pet Limited",
       "url": "https://omni.pet"
     },
-    "mainEntityOfPage": {
-      "@type": "WebPage"
-    }
+    "mainEntityOfPage": { "@type": "WebPage" }
   }
   </script>
 
@@ -718,7 +732,7 @@
         "name": "When should I switch from puppy to adult food?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Most dogs should transition from puppy to adult food between 10 and 12 months of age. Larger breeds may benefit from staying on puppy food slightly longer (up to 14-18 months) as they take longer to reach full skeletal maturity. Transition gradually over 7-10 days by mixing increasing amounts of adult food with the puppy food to avoid digestive upset."
+          "text": "Most dogs should transition between 10 and 12 months. Larger breeds may wait until 14-18 months. Transition gradually over 7-10 days by mixing increasing amounts of adult food with puppy food."
         }
       },
       {
@@ -726,7 +740,7 @@
         "name": "How do I know if my senior dog needs supplements?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Signs your senior dog may benefit from supplements include stiffness when getting up, reluctance to climb stairs or jump, a duller coat, increased tiredness, weight changes, or slower recovery from exercise. If your dog is over 7 years old and showing any of these signs, a vet-formulated supplement targeting joint health, immunity, or cognitive function can make a meaningful difference. Always consult your vet before starting a new supplement regimen."
+          "text": "Signs include stiffness when getting up, reluctance to climb stairs, a duller coat, increased tiredness, or slower recovery from exercise. If your dog is over 7 and showing these signs, a vet-formulated supplement can make a meaningful difference."
         }
       },
       {
@@ -734,7 +748,7 @@
         "name": "Can puppies take adult supplements?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "It is generally not recommended to give puppies supplements formulated for adult dogs. Puppies have different nutritional requirements, and adult dosages may not be appropriate for their developing bodies. Some ingredients that are beneficial for adults could be excessive for puppies. Always choose age-appropriate supplements and consult your vet if you are unsure about what your puppy needs."
+          "text": "It is generally not recommended. Puppies have different nutritional requirements and adult dosages may not be appropriate for their developing bodies. Always choose age-appropriate supplements."
         }
       },
       {
@@ -742,7 +756,7 @@
         "name": "How much should I feed my dog at each stage?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Puppies (0-12 months) generally need 3-4 meals per day until 6 months, then 2 meals per day, with higher calorie density to support growth. Adult dogs (1-7 years) do well on 2 meals per day, with portions based on weight, breed, and activity level. Senior dogs (7+ years) often need 10-20% fewer calories due to reduced metabolism, but may benefit from smaller, more frequent meals to aid digestion. Always follow your food manufacturer's guidelines and adjust based on your dog's body condition."
+          "text": "Puppies need 3-4 meals per day until 6 months, then 2 meals. Adults do well on 2 meals per day. Seniors often need 10-20% fewer calories but may benefit from smaller, more frequent meals."
         }
       },
       {
@@ -750,7 +764,7 @@
         "name": "What are the signs of nutritional deficiency?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Common signs of nutritional deficiency in dogs include a dull or dry coat, excessive shedding, flaky skin, lethargy, poor wound healing, digestive issues such as chronic diarrhoea, weak nails, and unexplained weight loss. In puppies, growth abnormalities and skeletal issues can also indicate deficiency. If you notice any of these signs, consult your vet for a dietary review and potential blood work."
+          "text": "Common signs include a dull coat, excessive shedding, flaky skin, lethargy, poor wound healing, digestive issues, weak nails, and unexplained weight loss."
         }
       },
       {
@@ -758,7 +772,7 @@
         "name": "Are plant-based supplements suitable for all life stages?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes, high-quality plant-based supplements can be suitable for dogs at all life stages, provided they are specifically formulated with the right balance of nutrients. Plant-based Omega-3 from algae oil, for example, provides the same DHA and EPA as fish oil without the environmental concerns. Omni's supplements are vet-formulated and designed to meet the nutritional needs of dogs across all life stages. Always check the label for age-appropriate recommendations."
+          "text": "Yes, high-quality plant-based supplements can be suitable for all life stages when specifically formulated. Plant-based Omega-3 from algae provides the same DHA and EPA as fish oil. Omni's supplements are vet-formulated for dogs across all life stages."
         }
       }
     ]
@@ -803,9 +817,14 @@
   <!-- HERO -->
   <section class="hero" id="top">
     <div class="container">
-      <span class="hero-badge">Life Stages Guide</span>
-      <h1>Nutrition for Every Stage of Life</h1>
-      <p>From their first wobbly steps to their golden years, your dog's nutritional needs change dramatically as they grow. Understanding what your dog needs at each life stage is the foundation of lifelong health &mdash; and the key to helping them thrive, not just survive.</p>
+      <div class="hero-image" role="img" aria-label="Dogs of different ages - puppy, adult, and senior together">
+        [Image: Three dogs of different ages together - puppy, adult, and senior - showing the journey through life stages]
+      </div>
+      <div>
+        <span class="hero-badge">Life Stages Guide</span>
+        <h1>Nutrition for Every Stage of Life</h1>
+        <p>Your dog's nutritional needs change dramatically as they grow. Understanding what they need at each stage is the foundation of lifelong health.</p>
+      </div>
     </div>
   </section>
 
@@ -814,79 +833,117 @@
     <div class="container">
       <div class="stage-cards">
         <a href="#puppy" class="stage-card">
-          <div class="stage-card-icon" role="img" aria-label="Puppy">&#128054;</div>
-          <h3>Puppy</h3>
-          <div class="stage-age">0 &ndash; 12 months</div>
-          <p>Building the foundation for a healthy life with growth-focused nutrition.</p>
+          <div class="stage-card-img stage-card-img--puppy" role="img" aria-label="Playful puppy running">
+            [Image: Playful puppy running on grass]
+          </div>
+          <div class="stage-card-body">
+            <h3>Puppy</h3>
+            <div class="stage-age">0 &ndash; 12 months</div>
+            <p>Building the foundation for a healthy life with growth-focused nutrition.</p>
+          </div>
         </a>
         <a href="#adult" class="stage-card">
-          <div class="stage-card-icon" role="img" aria-label="Adult dog">&#128021;</div>
-          <h3>Adult</h3>
-          <div class="stage-age">1 &ndash; 7 years</div>
-          <p>Maintaining peak health, energy, and resilience through balanced nutrition.</p>
+          <div class="stage-card-img stage-card-img--adult" role="img" aria-label="Active adult dog">
+            [Image: Healthy adult dog in its prime, active and alert]
+          </div>
+          <div class="stage-card-body">
+            <h3>Adult</h3>
+            <div class="stage-age">1 &ndash; 7 years</div>
+            <p>Maintaining peak health, energy, and resilience through balanced nutrition.</p>
+          </div>
         </a>
         <a href="#senior" class="stage-card">
-          <div class="stage-card-icon" role="img" aria-label="Senior dog">&#128058;</div>
-          <h3>Senior</h3>
-          <div class="stage-age">7+ years</div>
-          <p>Supporting comfort, mobility, and vitality with targeted supplementation.</p>
+          <div class="stage-card-img stage-card-img--senior" role="img" aria-label="Gentle senior dog">
+            [Image: Calm senior dog resting comfortably, greying muzzle]
+          </div>
+          <div class="stage-card-body">
+            <h3>Senior</h3>
+            <div class="stage-age">7+ years</div>
+            <p>Supporting comfort, mobility, and vitality with targeted supplementation.</p>
+          </div>
         </a>
       </div>
     </div>
   </section>
 
-  <!-- PUPPY SECTION -->
+  <!-- ====== PUPPY SECTION ====== -->
   <section class="section section--mint stage-section" id="puppy">
     <div class="container">
       <span class="hero-badge" style="background: var(--teal);">Stage 1</span>
       <h2 class="section-title">Puppy Stage: 0 &ndash; 12 Months</h2>
-      <p class="section-subtitle">The most rapid period of growth in your dog's life. Getting nutrition right now sets the foundation for everything that follows.</p>
+      <p class="section-subtitle">The most rapid period of growth in your dog's life. Getting nutrition right now sets the foundation for everything.</p>
 
-      <div class="stage-content">
+      <!-- Row 1: Text + Image -->
+      <div class="two-col">
         <div>
-          <h3>What puppies need nutritionally</h3>
-          <p>Puppies grow at an extraordinary rate &mdash; some breeds increase their birth weight by 40-50 times in the first year alone. This rapid development requires a nutrient-dense diet that supports:</p>
-          <ul>
-            <li><strong>Skeletal growth</strong> &mdash; Calcium and phosphorus in the correct ratio (1.2:1) for strong, properly formed bones</li>
-            <li><strong>Brain development</strong> &mdash; DHA (an Omega-3 fatty acid) is critical for cognitive function, learning, and trainability</li>
-            <li><strong>Immune system building</strong> &mdash; Antioxidants, vitamins E and C, and zinc support the developing immune system during the vulnerable vaccination period</li>
-            <li><strong>Muscle development</strong> &mdash; High-quality protein (at least 22% of diet) to build lean muscle mass</li>
-            <li><strong>Digestive maturation</strong> &mdash; Prebiotics and easily digestible ingredients help establish healthy gut flora</li>
+          <h3 style="font-size: 22px; font-weight: 700; color: var(--forest); margin-bottom: 12px;">What puppies need</h3>
+          <p>Puppies grow at an extraordinary rate &mdash; some breeds increase their birth weight by 40-50 times in the first year. This requires nutrient-dense food that supports:</p>
+          <ul class="highlight-list">
+            <li><strong>Skeletal growth</strong> &mdash; calcium and phosphorus in the correct 1.2:1 ratio</li>
+            <li><strong>Brain development</strong> &mdash; DHA from Omega-3 for cognitive function and trainability</li>
+            <li><strong>Immune building</strong> &mdash; antioxidants, vitamins E and C during the vaccination period</li>
+            <li><strong>Digestive maturation</strong> &mdash; prebiotics to establish healthy gut flora</li>
           </ul>
+        </div>
+        <div class="img-placeholder img-placeholder--mint" role="img" aria-label="Puppy eating from bowl">
+          [Image: Puppy eating from a bowl, healthy and energetic]
+        </div>
+      </div>
 
-          <h3>Common puppy health concerns</h3>
-          <ul>
-            <li><strong>Sensitive tummies</strong> &mdash; Puppies' digestive systems are still developing and can be easily upset by sudden diet changes, stress, or new environments</li>
-            <li><strong>Skin developing</strong> &mdash; The skin barrier is not fully mature, making puppies more susceptible to dryness, irritation, and environmental allergens</li>
-            <li><strong>Teething pain</strong> &mdash; Between 3 and 6 months, puppies lose their baby teeth. This can cause discomfort, reduced appetite, and chewing on everything in sight</li>
-            <li><strong>Growth-related joint stress</strong> &mdash; Large and giant breeds are particularly prone to developmental orthopaedic conditions if nutrition is not properly balanced</li>
-          </ul>
-
+      <!-- Row 2: Video + Milestones -->
+      <div class="two-col two-col--reverse">
+        <div>
+          <h3 style="font-size: 22px; font-weight: 700; color: var(--forest); margin-bottom: 12px;">Key milestones</h3>
           <div class="milestone-box">
-            <h4>Key Puppy Milestones</h4>
+            <h4>Puppy Timeline</h4>
             <ul>
-              <li><strong>3 &ndash; 6 months:</strong> Teething period &mdash; soft food or soaked kibble can help with discomfort</li>
-              <li><strong>6 &ndash; 16 weeks:</strong> Primary vaccination period &mdash; immune support is especially important</li>
-              <li><strong>6 months:</strong> Switch from 3-4 meals per day to 2 meals per day</li>
-              <li><strong>10 &ndash; 12 months:</strong> Begin gradual transition to adult food (larger breeds may wait until 14-18 months)</li>
+              <li><strong>6 &ndash; 16 weeks:</strong> Primary vaccination period &mdash; immune support is critical</li>
+              <li><strong>3 &ndash; 6 months:</strong> Teething &mdash; soft food can help with discomfort</li>
+              <li><strong>6 months:</strong> Switch from 3-4 meals to 2 meals per day</li>
+              <li><strong>10 &ndash; 12 months:</strong> Begin transition to adult food</li>
             </ul>
           </div>
-
-          <h3>Feeding tips for puppies</h3>
-          <ol class="numbered-list">
-            <li>Feed a complete, age-appropriate puppy food &mdash; not adult food with added extras</li>
-            <li>Divide daily portions into 3-4 meals until 6 months old, then reduce to 2 meals</li>
-            <li>Always transition foods gradually over 7-10 days to avoid tummy upsets</li>
-            <li>Avoid over-supplementing calcium, especially in large breeds &mdash; excess can cause skeletal abnormalities</li>
-            <li>Weigh your puppy regularly and adjust portions based on growth charts from your vet</li>
-          </ol>
         </div>
+        <div class="img-placeholder img-placeholder--teal img-placeholder--video" role="img" aria-label="Video: Puppy nutrition tips">
+          [Video: Puppy feeding guide &mdash; tips from our vets]
+        </div>
+      </div>
 
+      <!-- Row 3: Image grid + Common concerns -->
+      <div class="two-col">
+        <div class="img-grid">
+          <div class="img-placeholder img-placeholder--mint" role="img" aria-label="Puppy at vet check-up">
+            [Image: Puppy at the vet for a check-up]
+          </div>
+          <div class="img-placeholder img-placeholder--cream" role="img" aria-label="Puppy playing with toys">
+            [Image: Puppy playing and developing motor skills]
+          </div>
+          <div class="img-placeholder img-placeholder--teal" role="img" aria-label="Puppy's healthy coat close-up">
+            [Image: Close-up of puppy's soft, healthy coat]
+          </div>
+          <div class="img-placeholder img-placeholder--gold" role="img" aria-label="Natural supplement ingredients">
+            [Image: Natural ingredients used in puppy supplements]
+          </div>
+        </div>
         <div>
-          <div class="product-card">
+          <h3 style="font-size: 22px; font-weight: 700; color: var(--forest); margin-bottom: 12px;">Common concerns</h3>
+          <p><strong>Sensitive tummies</strong> &mdash; Puppies' digestive systems are still developing. Sudden diet changes can easily cause upset.</p>
+          <p style="margin-top: 12px;"><strong>Skin developing</strong> &mdash; The skin barrier isn't fully mature, making them more susceptible to dryness and irritation.</p>
+          <p style="margin-top: 12px;"><strong>Growth-related joint stress</strong> &mdash; Large breeds are particularly prone to developmental joint issues if nutrition isn't balanced.</p>
+        </div>
+      </div>
+
+      <!-- Recommended products -->
+      <h3 style="font-size: 22px; font-weight: 700; color: var(--forest); margin-top: 48px; margin-bottom: 8px;">Recommended for puppies</h3>
+      <div class="products-row" style="margin-top: 16px;">
+        <div class="product-card">
+          <div class="product-card-img" role="img" aria-label="Omni Puppy Supplement">
+            [Product image: Omni Puppy Supplement packaging]
+          </div>
+          <div class="product-card-body">
             <h4>Omni Puppy Supplement</h4>
             <div class="product-price">Coming soon</div>
-            <p>A vet-formulated daily chew designed for puppies, supporting brain development, immune health, and healthy growth with DHA from algae oil, prebiotics, and balanced vitamins.</p>
+            <p>Daily chew supporting brain development, immune health, and growth with DHA from algae oil and prebiotics.</p>
             <a href="#">View product &rarr;</a>
           </div>
         </div>
@@ -894,65 +951,102 @@
     </div>
   </section>
 
-  <!-- ADULT SECTION -->
+  <!-- ====== ADULT SECTION ====== -->
   <section class="section stage-section" id="adult">
     <div class="container">
       <span class="hero-badge" style="background: var(--teal);">Stage 2</span>
       <h2 class="section-title">Adult Stage: 1 &ndash; 7 Years</h2>
       <p class="section-subtitle">Your dog's prime years. The focus shifts from growth to maintaining optimal health, managing weight, and preventing early decline.</p>
 
-      <div class="stage-content">
+      <!-- Row 1: Image + Text -->
+      <div class="two-col">
+        <div class="img-placeholder img-placeholder--cream" role="img" aria-label="Active adult dog running in a park">
+          [Image: Adult dog running in a park, healthy coat, full of energy]
+        </div>
         <div>
-          <h3>Maintaining peak health</h3>
-          <p>Adult dogs need a well-balanced diet that provides sustained energy without excess calories. The three pillars of adult dog nutrition are:</p>
-          <ul>
-            <li><strong>Weight management</strong> &mdash; Over 50% of UK dogs are overweight. Maintaining a healthy weight reduces the risk of diabetes, heart disease, and joint problems</li>
-            <li><strong>Skin and coat health</strong> &mdash; A shiny, healthy coat is a visible indicator of good nutrition. Omega-3 and Omega-6 fatty acids are essential for skin barrier function</li>
+          <h3 style="font-size: 22px; font-weight: 700; color: var(--forest); margin-bottom: 12px;">Three pillars of adult health</h3>
+          <ul class="highlight-list">
+            <li><strong>Weight management</strong> &mdash; Over 50% of UK dogs are overweight. Maintaining a healthy weight reduces risk of diabetes, heart disease, and joint problems</li>
+            <li><strong>Skin and coat</strong> &mdash; Omega-3 and 6 fatty acids are essential for skin barrier function and a shiny, healthy coat</li>
             <li><strong>Digestive balance</strong> &mdash; A healthy gut microbiome supports immunity, nutrient absorption, and overall wellbeing</li>
           </ul>
+        </div>
+      </div>
 
-          <h3>Common adult dog health issues</h3>
-          <ul>
-            <li><strong>Skin irritation</strong> &mdash; Allergies and environmental sensitivities often first appear between ages 1-3. Itching, redness, and hot spots are common complaints</li>
-            <li><strong>Early joint wear</strong> &mdash; Even in young adults, repetitive exercise and genetic predisposition can start to affect joint cartilage, especially in active and large breeds</li>
-            <li><strong>Digestive sensitivity</strong> &mdash; Food intolerances, stress-related gut issues, and inflammatory bowel conditions can develop during adulthood</li>
-            <li><strong>Dental disease</strong> &mdash; By age 3, most dogs show some signs of dental disease, which can affect eating habits and overall health</li>
-          </ul>
+      <!-- Row 2: Text + Video -->
+      <div class="two-col two-col--reverse">
+        <div>
+          <h3 style="font-size: 22px; font-weight: 700; color: var(--forest); margin-bottom: 12px;">Common health issues</h3>
+          <p><strong>Skin irritation</strong> &mdash; Allergies often first appear between ages 1-3. Itching, redness, and hot spots are common.</p>
+          <p style="margin-top: 12px;"><strong>Early joint wear</strong> &mdash; Even in young adults, repetitive exercise and genetics can start to affect cartilage.</p>
+          <p style="margin-top: 12px;"><strong>Digestive sensitivity</strong> &mdash; Food intolerances and inflammatory conditions can develop during adulthood.</p>
+        </div>
+        <div class="img-placeholder img-placeholder--mint img-placeholder--video" role="img" aria-label="Video: Adult dog nutrition guide">
+          [Video: Keeping your adult dog in peak condition]
+        </div>
+      </div>
 
-          <h3>Activity levels and nutritional adjustments</h3>
-          <p>Not all adult dogs need the same amount of food. Active working dogs, sporting breeds, and highly energetic dogs may need 20-40% more calories than sedentary or less active breeds. Conversely, neutered dogs and those with lower activity levels often need fewer calories to maintain a healthy weight.</p>
-          <p>Adjust portions based on body condition rather than breed guidelines alone. You should be able to feel your dog's ribs without pressing hard, and they should have a visible waist when viewed from above.</p>
-
-          <h3>Signs to watch for</h3>
-          <ul class="warning-list">
+      <!-- Row 3: Image grid + Signs to watch -->
+      <div class="two-col">
+        <div>
+          <h3 style="font-size: 22px; font-weight: 700; color: var(--forest); margin-bottom: 12px;">Signs to watch for</h3>
+          <p style="margin-bottom: 12px;">Adjust portions based on body condition &mdash; you should be able to feel your dog's ribs without pressing hard, and they should have a visible waist from above.</p>
+          <ul class="highlight-list">
             <li>Persistent scratching, licking, or chewing at skin</li>
             <li>Unexplained weight gain or loss</li>
             <li>Dull, dry coat or excessive shedding</li>
             <li>Stiffness after exercise or reluctance to play</li>
-            <li>Chronic loose stools or digestive irregularity</li>
-            <li>Bad breath or difficulty eating hard food</li>
           </ul>
         </div>
+        <div class="img-grid">
+          <div class="img-placeholder img-placeholder--cream" role="img" aria-label="Dog with shiny healthy coat">
+            [Image: Dog with a visibly shiny, healthy coat]
+          </div>
+          <div class="img-placeholder img-placeholder--mint" role="img" aria-label="Dog being weighed at vet">
+            [Image: Dog being weighed at a vet visit]
+          </div>
+          <div class="img-placeholder img-placeholder--gold" role="img" aria-label="Omni supplement chew close-up">
+            [Image: Close-up of Omni cold-pressed soft chew]
+          </div>
+          <div class="img-placeholder img-placeholder--teal" role="img" aria-label="Dog enjoying outdoor walk">
+            [Image: Happy dog on a countryside walk]
+          </div>
+        </div>
+      </div>
 
-        <div>
-          <div class="product-card">
-            <h4>Omni Irritated Skin Supplement</h4>
+      <!-- Recommended products -->
+      <h3 style="font-size: 22px; font-weight: 700; color: var(--forest); margin-top: 48px; margin-bottom: 8px;">Recommended for adults</h3>
+      <div class="products-row" style="margin-top: 16px;">
+        <div class="product-card">
+          <div class="product-card-img" role="img" aria-label="Omni Irritated Skin Supplement">
+            [Product image: Omni Irritated Skin packaging]
+          </div>
+          <div class="product-card-body">
+            <h4>Irritated Skin Supplement</h4>
             <div class="product-price">&pound;29.99 &ndash; &pound;43.99</div>
-            <p>Cold-pressed soft chew with Omega-3 and 6, coconut oil, and flax seed. Soothes itchy, inflamed skin from the inside out. Free from grain, soya, and gluten.</p>
+            <p>Omega-3 &amp; 6, coconut oil, and flax seed to soothe itchy, inflamed skin. Grain and soya free.</p>
             <a href="#">View product &rarr;</a>
           </div>
-
-          <div class="product-card">
-            <h4>Omni Joint Care Supplement</h4>
+        </div>
+        <div class="product-card">
+          <div class="product-card-img" role="img" aria-label="Omni Joint Care Supplement">
+            [Product image: Omni Joint Care packaging]
+          </div>
+          <div class="product-card-body">
+            <h4>Joint Care Supplement</h4>
             <div class="product-price">Available now</div>
-            <p>Vet-formulated with glucosamine, MSM, and plant-based Omega-3 to support joint mobility, reduce stiffness, and protect cartilage in active dogs.</p>
+            <p>Glucosamine, MSM, and plant-based Omega-3 for joint mobility and cartilage protection.</p>
             <a href="#">View product &rarr;</a>
           </div>
-
-          <div class="product-card">
-            <h4>Omni Digestion Supplement</h4>
+        </div>
+        <div class="product-card">
+          <div class="product-card-img" role="img" aria-label="Omni Digestion Supplement">
+            [Product image: Omni Digestion packaging]
+          </div>
+          <div class="product-card-body">
+            <h4>Digestion Supplement</h4>
             <div class="product-price">Available now</div>
-            <p>A daily chew with prebiotics, pumpkin fibre, and digestive enzymes to support gut health, firm stools, and nutrient absorption.</p>
+            <p>Prebiotics, pumpkin fibre, and enzymes for gut health, firm stools, and nutrient absorption.</p>
             <a href="#">View product &rarr;</a>
           </div>
         </div>
@@ -960,64 +1054,98 @@
     </div>
   </section>
 
-  <!-- SENIOR SECTION -->
+  <!-- ====== SENIOR SECTION ====== -->
   <section class="section section--cream stage-section" id="senior">
     <div class="container">
       <span class="hero-badge" style="background: var(--teal);">Stage 3</span>
       <h2 class="section-title">Senior Stage: 7+ Years</h2>
-      <p class="section-subtitle">As your dog ages, their body changes. Targeted nutrition and supplementation can help them stay comfortable, mobile, and mentally sharp.</p>
+      <p class="section-subtitle">As your dog ages, their body changes. Targeted nutrition and supplementation helps them stay comfortable, mobile, and mentally sharp.</p>
 
-      <div class="stage-content">
+      <!-- Row 1: Text + Image -->
+      <div class="two-col">
         <div>
-          <h3>Changing metabolism</h3>
-          <p>Senior dogs typically experience a 20-30% reduction in metabolic rate. This means they need fewer calories but often require higher concentrations of specific nutrients to maintain health. Without dietary adjustments, senior dogs are prone to weight gain, which accelerates age-related decline.</p>
-
-          <h3>Common senior dog conditions</h3>
-          <ul>
-            <li><strong>Arthritis and joint stiffness</strong> &mdash; The most common condition in senior dogs. Cartilage wears down over time, leading to pain, reduced mobility, and reluctance to exercise</li>
-            <li><strong>Reduced immunity</strong> &mdash; The immune system weakens with age, making senior dogs more susceptible to infections, slower wound healing, and increased inflammation</li>
-            <li><strong>Coat thinning and skin changes</strong> &mdash; Reduced oil production leads to a drier, less lustrous coat. Skin becomes thinner and more prone to injury</li>
-            <li><strong>Cognitive decline</strong> &mdash; Canine Cognitive Dysfunction (similar to dementia in humans) affects up to 68% of dogs over 15. Signs include disorientation, altered sleep patterns, and reduced responsiveness</li>
-            <li><strong>Weight change</strong> &mdash; Some seniors gain weight due to reduced activity, while others lose muscle mass (sarcopenia) despite adequate calorie intake</li>
+          <h3 style="font-size: 22px; font-weight: 700; color: var(--forest); margin-bottom: 12px;">What changes</h3>
+          <p>Senior dogs experience a 20-30% reduction in metabolic rate. They need fewer calories but higher concentrations of specific nutrients.</p>
+          <ul class="highlight-list">
+            <li><strong>Arthritis and stiffness</strong> &mdash; the most common condition, affecting mobility and quality of life</li>
+            <li><strong>Reduced immunity</strong> &mdash; slower healing, more susceptible to infections</li>
+            <li><strong>Coat and skin changes</strong> &mdash; less oil production, thinner, drier coat</li>
+            <li><strong>Cognitive decline</strong> &mdash; affects up to 68% of dogs over 15</li>
           </ul>
+        </div>
+        <div class="img-placeholder img-placeholder--cream" role="img" aria-label="Senior dog resting peacefully">
+          [Image: Senior dog resting comfortably, greying muzzle, gentle expression]
+        </div>
+      </div>
 
-          <h3>How to adapt diet and supplementation</h3>
-          <p>Senior dogs benefit from a diet that is lower in calories but higher in quality protein to preserve lean muscle mass. Key nutritional adjustments include:</p>
-          <ul>
-            <li>Increase Omega-3 fatty acids for anti-inflammatory support</li>
-            <li>Add glucosamine and MSM for joint cartilage maintenance</li>
+      <!-- Row 2: Video + Adaptations -->
+      <div class="two-col two-col--reverse">
+        <div>
+          <h3 style="font-size: 22px; font-weight: 700; color: var(--forest); margin-bottom: 12px;">How to adapt their diet</h3>
+          <ul class="highlight-list">
+            <li>Increase Omega-3 for anti-inflammatory support</li>
+            <li>Add glucosamine and MSM for joint maintenance</li>
             <li>Include antioxidants (vitamins E and C) to combat oxidative stress</li>
-            <li>Consider medium-chain triglycerides (MCTs) for cognitive support</li>
-            <li>Ensure adequate fibre for digestive regularity</li>
             <li>Feed smaller, more frequent meals to ease digestion</li>
           </ul>
+        </div>
+        <div class="img-placeholder img-placeholder--teal img-placeholder--video" role="img" aria-label="Video: Caring for your senior dog">
+          [Video: Senior dog care &mdash; nutrition and supplementation tips]
+        </div>
+      </div>
 
+      <!-- Row 3: Image grid + Vet box -->
+      <div class="two-col">
+        <div class="img-grid">
+          <div class="img-placeholder img-placeholder--teal" role="img" aria-label="Senior dog on gentle walk">
+            [Image: Senior dog on a gentle walk with owner]
+          </div>
+          <div class="img-placeholder img-placeholder--cream" role="img" aria-label="Vet examining senior dog">
+            [Image: Vet checking senior dog's joints]
+          </div>
+          <div class="img-placeholder img-placeholder--mint" role="img" aria-label="Senior dog with supplement">
+            [Image: Senior dog happily taking a supplement chew]
+          </div>
+          <div class="img-placeholder img-placeholder--gold" role="img" aria-label="Close-up of supplement ingredients">
+            [Image: Joint care ingredients - glucosamine, turmeric, omega oils]
+          </div>
+        </div>
+        <div>
           <div class="vet-box">
             <h4>When to talk to your vet</h4>
             <ul>
-              <li>Your dog is struggling to get up or showing obvious pain when moving</li>
-              <li>Significant appetite changes &mdash; eating much more or much less than usual</li>
-              <li>Unexplained weight loss, especially loss of muscle mass</li>
-              <li>Increased thirst and urination (can indicate kidney or endocrine issues)</li>
-              <li>Confusion, disorientation, or changes in sleep patterns</li>
-              <li>New lumps, bumps, or changes in existing ones</li>
-              <li>Persistent coughing, laboured breathing, or exercise intolerance</li>
+              <li>Struggling to get up or obvious pain when moving</li>
+              <li>Significant appetite changes</li>
+              <li>Unexplained weight loss or muscle wasting</li>
+              <li>Increased thirst and urination</li>
+              <li>Confusion, disorientation, or sleep changes</li>
             </ul>
           </div>
         </div>
+      </div>
 
-        <div>
-          <div class="product-card">
-            <h4>Omni Senior Supplement</h4>
+      <!-- Recommended products -->
+      <h3 style="font-size: 22px; font-weight: 700; color: var(--forest); margin-top: 48px; margin-bottom: 8px;">Recommended for seniors</h3>
+      <div class="products-row" style="margin-top: 16px;">
+        <div class="product-card">
+          <div class="product-card-img" role="img" aria-label="Omni Senior Supplement">
+            [Product image: Omni Senior Supplement packaging]
+          </div>
+          <div class="product-card-body">
+            <h4>Senior Supplement</h4>
             <div class="product-price">Available now</div>
-            <p>A comprehensive daily chew for senior dogs, combining joint support, cognitive health ingredients, immune-boosting antioxidants, and Omega-3 from algae oil.</p>
+            <p>Joint support, cognitive health, immune-boosting antioxidants, and Omega-3 from algae oil.</p>
             <a href="#">View product &rarr;</a>
           </div>
-
-          <div class="product-card">
-            <h4>Omni Joint Care Supplement</h4>
+        </div>
+        <div class="product-card">
+          <div class="product-card-img" role="img" aria-label="Omni Joint Care Supplement">
+            [Product image: Omni Joint Care packaging]
+          </div>
+          <div class="product-card-body">
+            <h4>Joint Care Supplement</h4>
             <div class="product-price">Available now</div>
-            <p>Extra joint support with glucosamine, MSM, and anti-inflammatory plant-based Omega-3. Ideal for senior dogs showing signs of stiffness or reduced mobility.</p>
+            <p>Extra joint support with glucosamine, MSM, and anti-inflammatory Omega-3 for stiffness and mobility.</p>
             <a href="#">View product &rarr;</a>
           </div>
         </div>
@@ -1029,7 +1157,7 @@
   <section class="comparison-section">
     <div class="container">
       <h2 class="section-title">Nutritional Needs at a Glance</h2>
-      <p class="section-subtitle">How your dog's nutritional requirements change across the three life stages.</p>
+      <p class="section-subtitle">How your dog's requirements change across the three life stages.</p>
 
       <div class="table-wrap">
         <table class="comparison-table">
@@ -1044,45 +1172,45 @@
           <tbody>
             <tr>
               <td>Protein</td>
-              <td>High (22%+) for muscle and organ development</td>
+              <td>High (22%+) for development</td>
               <td>Moderate (18-22%) for maintenance</td>
-              <td>Moderate-high quality to preserve lean muscle</td>
+              <td>High quality to preserve lean muscle</td>
             </tr>
             <tr>
               <td>Omega Fatty Acids</td>
-              <td>DHA essential for brain development</td>
-              <td>Omega-3 &amp; 6 for skin and coat health</td>
-              <td>Increased Omega-3 for anti-inflammatory support</td>
+              <td>DHA for brain development</td>
+              <td>Omega-3 &amp; 6 for skin and coat</td>
+              <td>Increased Omega-3 for inflammation</td>
             </tr>
             <tr>
               <td>Joint Support</td>
-              <td>Balanced calcium and phosphorus for growth</td>
-              <td>Preventative support for active breeds</td>
-              <td>Glucosamine, MSM, and chondroitin essential</td>
+              <td>Balanced calcium &amp; phosphorus</td>
+              <td>Preventative for active breeds</td>
+              <td>Glucosamine, MSM, chondroitin</td>
             </tr>
             <tr>
               <td>Immune Support</td>
-              <td>Critical during vaccination period</td>
-              <td>Maintain with balanced antioxidants</td>
-              <td>Increased antioxidants to combat age-related decline</td>
+              <td>Critical during vaccination</td>
+              <td>Balanced antioxidants</td>
+              <td>Increased antioxidants</td>
             </tr>
             <tr>
               <td>Digestive Support</td>
-              <td>Prebiotics for developing gut flora</td>
-              <td>Fibre and enzymes for balance</td>
-              <td>Easily digestible food, smaller meals</td>
+              <td>Prebiotics for developing gut</td>
+              <td>Fibre and enzymes</td>
+              <td>Easily digestible, smaller meals</td>
             </tr>
             <tr>
               <td>Calories</td>
-              <td>High calorie density for growth</td>
+              <td>High density for growth</td>
               <td>Matched to activity level</td>
-              <td>10-20% fewer calories, adjusted for metabolism</td>
+              <td>10-20% fewer calories</td>
             </tr>
             <tr>
               <td>Key Supplements</td>
               <td>DHA, prebiotics, vitamins E &amp; C</td>
               <td>Omega-3 &amp; 6, probiotics, skin support</td>
-              <td>Joint care, cognitive support, immune boosters</td>
+              <td>Joint care, cognitive, immune boosters</td>
             </tr>
           </tbody>
         </table>
@@ -1094,47 +1222,47 @@
   <section class="faq" id="faq">
     <div class="container">
       <h2 class="section-title">Frequently Asked Questions</h2>
-      <p class="section-subtitle">Common questions about feeding and supplementing your dog at every life stage.</p>
+      <p class="section-subtitle">Common questions about feeding and supplementing at every life stage.</p>
 
       <div class="accordion-item">
         <button class="accordion-btn">When should I switch from puppy to adult food?</button>
         <div class="accordion-content">
-          <p>Most dogs should transition from puppy to adult food between 10 and 12 months of age. Larger breeds may benefit from staying on puppy food slightly longer &mdash; up to 14-18 months &mdash; as they take longer to reach full skeletal maturity. Always transition gradually over 7-10 days by mixing increasing amounts of adult food with the puppy food to avoid digestive upset.</p>
+          <p>Most dogs should transition between 10 and 12 months. Larger breeds may wait until 14-18 months as they take longer to reach skeletal maturity. Always transition gradually over 7-10 days to avoid digestive upset.</p>
         </div>
       </div>
 
       <div class="accordion-item">
         <button class="accordion-btn">How do I know if my senior dog needs supplements?</button>
         <div class="accordion-content">
-          <p>Signs your senior dog may benefit from supplements include stiffness when getting up, reluctance to climb stairs or jump, a duller coat, increased tiredness, weight changes, or slower recovery from exercise. If your dog is over 7 years old and showing any of these signs, a vet-formulated supplement targeting joint health, immunity, or cognitive function can make a meaningful difference. Always consult your vet before starting a new supplement regimen.</p>
+          <p>Signs include stiffness when getting up, reluctance to climb stairs, a duller coat, increased tiredness, or slower recovery from exercise. If your dog is over 7 and showing these signs, a vet-formulated supplement can help. Always consult your vet first.</p>
         </div>
       </div>
 
       <div class="accordion-item">
         <button class="accordion-btn">Can puppies take adult supplements?</button>
         <div class="accordion-content">
-          <p>It is generally not recommended to give puppies supplements formulated for adult dogs. Puppies have different nutritional requirements, and adult dosages may not be appropriate for their developing bodies. Some ingredients that are beneficial for adults could be excessive for puppies. Always choose age-appropriate supplements and consult your vet if you are unsure about what your puppy needs.</p>
+          <p>It's generally not recommended. Puppies have different nutritional requirements, and adult dosages may not suit their developing bodies. Always choose age-appropriate supplements and check with your vet.</p>
         </div>
       </div>
 
       <div class="accordion-item">
         <button class="accordion-btn">How much should I feed my dog at each stage?</button>
         <div class="accordion-content">
-          <p>Puppies (0-12 months) generally need 3-4 meals per day until 6 months, then 2 meals per day, with higher calorie density to support growth. Adult dogs (1-7 years) do well on 2 meals per day, with portions based on weight, breed, and activity level. Senior dogs (7+ years) often need 10-20% fewer calories due to reduced metabolism, but may benefit from smaller, more frequent meals to aid digestion. Always follow your food manufacturer's guidelines and adjust based on your dog's body condition.</p>
+          <p>Puppies need 3-4 meals per day until 6 months, then 2. Adults do well on 2 meals, with portions based on weight and activity. Seniors often need 10-20% fewer calories but benefit from smaller, more frequent meals.</p>
         </div>
       </div>
 
       <div class="accordion-item">
         <button class="accordion-btn">What are the signs of nutritional deficiency?</button>
         <div class="accordion-content">
-          <p>Common signs of nutritional deficiency in dogs include a dull or dry coat, excessive shedding, flaky skin, lethargy, poor wound healing, digestive issues such as chronic diarrhoea, weak nails, and unexplained weight loss. In puppies, growth abnormalities and skeletal issues can also indicate deficiency. If you notice any of these signs, consult your vet for a dietary review and potential blood work.</p>
+          <p>Look for a dull coat, excessive shedding, flaky skin, lethargy, poor wound healing, digestive issues, weak nails, or unexplained weight loss. In puppies, growth abnormalities can also be a sign. Consult your vet for a dietary review.</p>
         </div>
       </div>
 
       <div class="accordion-item">
         <button class="accordion-btn">Are plant-based supplements suitable for all life stages?</button>
         <div class="accordion-content">
-          <p>Yes, high-quality plant-based supplements can be suitable for dogs at all life stages, provided they are specifically formulated with the right balance of nutrients. Plant-based Omega-3 from algae oil, for example, provides the same DHA and EPA as fish oil without the environmental concerns. Omni's supplements are vet-formulated and designed to meet the nutritional needs of dogs across all life stages. Always check the label for age-appropriate recommendations.</p>
+          <p>Yes, when properly formulated. Plant-based Omega-3 from algae provides the same DHA and EPA as fish oil. Omni's supplements are vet-formulated for dogs across all life stages. Always check labels for age recommendations.</p>
         </div>
       </div>
     </div>
@@ -1143,9 +1271,14 @@
   <!-- FINAL CTA -->
   <section class="final-cta">
     <div class="container">
-      <h2>Not sure which stage your dog is in?</h2>
-      <p>Take our quick quiz to get personalised nutrition and supplement recommendations tailored to your dog's age, breed, and health needs.</p>
-      <a href="#" class="btn btn--red">Take our quiz</a>
+      <div class="final-cta-image" role="img" aria-label="Happy dog of any age with owner">
+        [Image: Happy, healthy dog playing with owner in a garden]
+      </div>
+      <div>
+        <h2>Not sure which stage your dog is in?</h2>
+        <p>Take our quick quiz to get personalised nutrition and supplement recommendations for your dog's age, breed, and health needs.</p>
+        <a href="#" class="btn btn--red">Take our quiz</a>
+      </div>
     </div>
   </section>
 
@@ -1155,32 +1288,33 @@
       <div class="footer-top">
         <div class="footer-brand">
           <h3>omni.pet</h3>
-          <p>Vet-formulated, plant-based nutrition for dogs and cats. Founded by veterinarian Dr. Guy Sandelowsky. Better for your pet, better for the planet.</p>
+          <p>Created by Vets, Adored by Pets.<br>The UK's leading plant-based pet nutrition brand.</p>
+          <p style="margin-top: 12px;">Founded by Dr. Guy Sandelowsky, veterinarian.</p>
         </div>
         <div class="footer-col">
           <h4>Shop</h4>
-          <a href="#">Dog Supplements</a>
-          <a href="#">Cat Supplements</a>
-          <a href="#">Dog Food</a>
+          <a href="#">Dogs</a>
+          <a href="#">Cats</a>
+          <a href="#">Supplements</a>
           <a href="#">Bundles</a>
         </div>
         <div class="footer-col">
           <h4>Learn</h4>
+          <a href="#">Blog</a>
           <a href="#">Life Stages Guide</a>
-          <a href="#">Skin Health</a>
-          <a href="#">Joint Care</a>
-          <a href="#">Nutrition Blog</a>
+          <a href="#">Ingredients</a>
+          <a href="#">Reviews</a>
         </div>
         <div class="footer-col">
           <h4>Company</h4>
           <a href="#">About Us</a>
-          <a href="#">Our Vets</a>
-          <a href="#">Reviews</a>
           <a href="#">Contact</a>
+          <a href="#">Sustainability</a>
+          <a href="#">Careers</a>
         </div>
       </div>
       <div class="footer-bottom">
-        <span>&copy; 2025 Omni Pet Limited. All rights reserved.</span>
+        <span>&copy; 2026 Omni Pet Limited. All rights reserved.</span>
         <div class="footer-socials">
           <a href="#" aria-label="Instagram">IG</a>
           <a href="#" aria-label="Facebook">FB</a>
@@ -1204,24 +1338,10 @@
           el.querySelector('.accordion-content').style.maxHeight = null;
         });
 
-        // Open clicked if was closed
+        // Open clicked if it was closed
         if (!isActive) {
           item.classList.add('active');
           content.style.maxHeight = content.scrollHeight + 'px';
-        }
-      });
-    });
-
-    // Smooth scroll for stage cards (fallback for browsers without CSS smooth scroll)
-    document.querySelectorAll('.stage-card').forEach(function(card) {
-      card.addEventListener('click', function(e) {
-        var href = this.getAttribute('href');
-        if (href && href.startsWith('#')) {
-          var target = document.querySelector(href);
-          if (target) {
-            e.preventDefault();
-            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          }
         }
       });
     });
